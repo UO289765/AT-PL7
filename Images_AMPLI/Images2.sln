@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35707.178
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageProducer_ampliacion", "ImageProducer_ampliacion\ImageProducer_ampliacion.csproj", "{EA765080-11C1-4B5F-8F04-4AFDF2220FE7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageWorker_ampli", "ImageWorker_ampli\ImageWorker_ampli.csproj", "{DF812B1D-FDEA-40D5-AFA1-37D17F075D20}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageVisualizer_ampli", "ImageVisualizer_ampli\ImageVisualizer_ampli.csproj", "{56BC8F94-28F9-402B-BA97-F3E211E64D56}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageMessageLib", "ImageMessageLib\ImageMessageLib.csproj", "{A0D1DBE8-7849-476A-92A0-7D0B3C404447}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageProcessor_ampli", "ImageProcessor_ampli\ImageProcessor_ampli.csproj", "{892AD1A1-B242-4075-A6E6-9AD7B896D6EC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EA765080-11C1-4B5F-8F04-4AFDF2220FE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA765080-11C1-4B5F-8F04-4AFDF2220FE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA765080-11C1-4B5F-8F04-4AFDF2220FE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA765080-11C1-4B5F-8F04-4AFDF2220FE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF812B1D-FDEA-40D5-AFA1-37D17F075D20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF812B1D-FDEA-40D5-AFA1-37D17F075D20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF812B1D-FDEA-40D5-AFA1-37D17F075D20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF812B1D-FDEA-40D5-AFA1-37D17F075D20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56BC8F94-28F9-402B-BA97-F3E211E64D56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56BC8F94-28F9-402B-BA97-F3E211E64D56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56BC8F94-28F9-402B-BA97-F3E211E64D56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56BC8F94-28F9-402B-BA97-F3E211E64D56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0D1DBE8-7849-476A-92A0-7D0B3C404447}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0D1DBE8-7849-476A-92A0-7D0B3C404447}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0D1DBE8-7849-476A-92A0-7D0B3C404447}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0D1DBE8-7849-476A-92A0-7D0B3C404447}.Release|Any CPU.Build.0 = Release|Any CPU
+		{892AD1A1-B242-4075-A6E6-9AD7B896D6EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{892AD1A1-B242-4075-A6E6-9AD7B896D6EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{892AD1A1-B242-4075-A6E6-9AD7B896D6EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{892AD1A1-B242-4075-A6E6-9AD7B896D6EC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
