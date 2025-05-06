@@ -5,9 +5,9 @@
         public int seqn { get; set; }
         public string Payload { get; set; }
 
-        public string Serialize() => $"{seqn}:{Payload}";
+        public string Serialize() => $"{seqn}:{Payload}"; //serializa la imagen
 
-        public static ImageMessage Deserialize(string raw)
+        public static ImageMessage Deserialize(string raw)//Deserializa la magen
         {
             var parts = raw.Split(':');
             return new ImageMessage
@@ -18,7 +18,7 @@
         }
     }
 
-    public interface IImageProcessor
+    public interface IImageProcessor //Interfaces para hacerlo intercambiable
     {
         string Process(string imagePayload);
     }

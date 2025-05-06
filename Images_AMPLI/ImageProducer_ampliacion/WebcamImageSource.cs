@@ -14,7 +14,7 @@ namespace ImageProducer_ampliacion
 
         public WebcamImageSource()
         {
-            capture = new VideoCapture(0);
+            capture = new VideoCapture(0); //Abre la cámara para capturar imágenes
             if (!capture.IsOpened())
                 throw new Exception("No se pudo abrir la webcam.");
         }
@@ -32,7 +32,7 @@ namespace ImageProducer_ampliacion
 
             return new ImageMessage
             {
-                seqn = id++,
+                seqn = id++, //incrementa el nseq
                 Payload = base64
             };
         }

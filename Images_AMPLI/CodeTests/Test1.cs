@@ -12,7 +12,7 @@ namespace CodeTest
             // Crea una instancia de ImageMessage con datos de ejemplo
             var original = new ImageMessage
             {
-                Id = 42,
+                seqn = 42,
                 Payload = "base64encodedimage"
             };
 
@@ -21,7 +21,7 @@ namespace CodeTest
             var deserialized = ImageMessage.Deserialize(serialized);
 
             // Verifica que los datos se mantengan iguales después del ciclo
-            Assert.AreEqual(original.Id, deserialized.Id);
+            Assert.AreEqual(original.seqn, deserialized.seqn);
             Assert.AreEqual(original.Payload, deserialized.Payload);
         }
         [TestMethod]
@@ -36,5 +36,3 @@ namespace CodeTest
         }
     }
 }
-}
-

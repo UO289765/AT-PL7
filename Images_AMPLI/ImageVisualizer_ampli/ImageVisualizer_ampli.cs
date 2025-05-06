@@ -11,18 +11,26 @@ namespace ImageVisualizer_ampli
     // Implementamos la interfaz IImageViewer
     class ImageVisualizer_ampli : IImageViewer
     {
+        //Cola segura para múltiples hilos que almacena tuplas (imagen, routingKey)
         private static BlockingCollection<(ImageMessage img, string routingKey)> imageQueue = new();
 
         static void Main()
         {
+            //Configura la conexión a RabbitMQ con la IP del servidor
             var factory = new ConnectionFactory() { HostName = "10.38.0.172" };
-            using var connection = factory.CreateConnection();
-            using var channel = connection.CreateModel();
+            using var connection = factory.CreateConnection(); //Abre la conexión
+            using var channel = connection.CreateModel(); //Crea un canal de comunicación
 
+            //Declara un exchange tipo 'topic' llamado ImageExchange (creado si no existe)
             channel.ExchangeDeclare("ImageExchange", ExchangeType.Topic);
 
+            //Declara una cola temporal (RabbitMQ genera el nombre automáticamente)
             var queueName = channel.QueueDeclare().QueueName;
+
+            //Vincula la cola temporal al exchange para recibir mensajes con routingKey que empiecen por 'Image.'
             channel.QueueBind(queue: queueName, exchange: "ImageExchange", routingKey: "Image.*");
+
+            //Crea un consumidor de eventos
 
             var consumer = new EventingBasicConsumer(channel);
             consumer.Received += (model, ea) =>
@@ -30,7 +38,7 @@ namespace ImageVisualizer_ampli
                 var body = ea.Body.ToArray();
                 var message = Encoding.UTF8.GetString(body);
                 var img = ImageMessage.Deserialize(message);
-                Console.WriteLine($"[Visualizer] Imagen {img.seqn} ({ea.RoutingKey}) recibida");
+                Console.WriteLine($"[Visualizer] Imagen {img.seqn} ({ea.RoutingKey}) recibida"); //Muestra por consola la imagen recibida
 
                 // Encola la imagen para que el hilo principal la procese
                 imageQueue.Add((img, ea.RoutingKey));
@@ -77,7 +85,7 @@ namespace ImageVisualizer_ampli
         {
             try
             {
-                byte[] imageBytes = Convert.FromBase64String(img.Payload);
+                byte[] imageBytes = Convert.FromBase64String(img.Payload); //convierte a bytes
                 using var mat = Cv2.ImDecode(imageBytes, ImreadModes.Color);
 
                 if (mat.Empty())
@@ -88,13 +96,13 @@ namespace ImageVisualizer_ampli
 
                 string windowName = routingKey switch
                 {
-                    "Image.Raw" => "Imagen sin procesar",
+                    "Image.Raw" => "Imagen sin procesar", //las raw son las originales, las result las procesadas
                     "Image.Result" => "Imagen procesada",
                     _ => "Imagen desconocida"
                 };
 
                 Cv2.ImShow(windowName, mat);
-                Cv2.WaitKey(1);  // Refresca sin bloquear
+                Cv2.WaitKey(1);  //Refresca sin bloquear
             }
             catch (Exception ex)
             {

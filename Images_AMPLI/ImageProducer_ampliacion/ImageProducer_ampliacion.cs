@@ -19,7 +19,7 @@ namespace ImageProducer_ampliacion
 
             channel.ExchangeDeclare(exchangeName, ExchangeType.Topic);
 
-            IImageSource source = new WebcamImageSource();
+            IImageSource source = new WebcamImageSource(); //llama para capturar desde la webcam
 
             Console.WriteLine("Productor en tiempo real iniciado. Presiona Ctrl+C para detener.");
 
@@ -35,7 +35,7 @@ namespace ImageProducer_ampliacion
                         routingKey: routingKey,
                         basicProperties: null,
                         body: body
-                    );
+                    );//Publica
 
                     Console.WriteLine($"[Producer] Imagen enviada: {img.seqn}");
 
