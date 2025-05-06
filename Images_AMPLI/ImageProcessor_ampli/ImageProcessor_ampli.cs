@@ -9,7 +9,7 @@ namespace ImageProcessor_ampli
     {
         static void Main()
         {
-            var factory = new ConnectionFactory() { HostName = "192.168.1.65" };
+            var factory = new ConnectionFactory() { HostName = "10.38.0.172" };
             using var connection = factory.CreateConnection();
             using var channel = connection.CreateModel();
 
@@ -26,7 +26,7 @@ namespace ImageProcessor_ampli
                 var msg = Encoding.UTF8.GetString(body);
                 var img = ImageMessage.Deserialize(msg);
 
-                Console.WriteLine($"[Processor] Imagen recibida: {img.Id}, enviando a cola de trabajo");
+                Console.WriteLine($"[Processor] Imagen recibida: {img.seqn}, enviando a cola de trabajo");
 
                 channel.BasicPublish("", "ImageWorkQueue", null, body);
             };

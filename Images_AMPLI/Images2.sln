@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageMessageLib", "ImageMes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageProcessor_ampli", "ImageProcessor_ampli\ImageProcessor_ampli.csproj", "{892AD1A1-B242-4075-A6E6-9AD7B896D6EC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeTest", "CodeTest\CodeTest.csproj", "{17CCEE8F-ECF9-48F0-9479-21160334C2EA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{892AD1A1-B242-4075-A6E6-9AD7B896D6EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{892AD1A1-B242-4075-A6E6-9AD7B896D6EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{892AD1A1-B242-4075-A6E6-9AD7B896D6EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17CCEE8F-ECF9-48F0-9479-21160334C2EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17CCEE8F-ECF9-48F0-9479-21160334C2EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17CCEE8F-ECF9-48F0-9479-21160334C2EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17CCEE8F-ECF9-48F0-9479-21160334C2EA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -7,9 +7,9 @@ namespace ImageMessageLib
         public int Id { get; set; }
         public string Payload { get; set; }
 
-        public string Serialize() => $"{Id}:{Payload}";
+        public string Serialize() => $"{Id}:{Payload}"; //convierte imagen en string
 
-        public static ImageMessage Deserialize(string raw)
+        public static ImageMessage Deserialize(string raw) //divide el string en partes, los convierte a su tipo y retorna imagen
         {
             var parts = raw.Split(':');
             return new ImageMessage
@@ -19,7 +19,7 @@ namespace ImageMessageLib
             };
         }
     }
-    public interface IImageProcessor
+    public interface IImageProcessor //interfaces para hacer intercambiables
     {
         string Process(string imagePayload);
     }

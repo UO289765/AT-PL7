@@ -15,7 +15,7 @@ namespace ImageVisualizer_ampli
 
         static void Main()
         {
-            var factory = new ConnectionFactory() { HostName = "192.168.1.65" };
+            var factory = new ConnectionFactory() { HostName = "10.38.0.172" };
             using var connection = factory.CreateConnection();
             using var channel = connection.CreateModel();
 
@@ -30,7 +30,7 @@ namespace ImageVisualizer_ampli
                 var body = ea.Body.ToArray();
                 var message = Encoding.UTF8.GetString(body);
                 var img = ImageMessage.Deserialize(message);
-                Console.WriteLine($"[Visualizer] Imagen {img.Id} ({ea.RoutingKey}) recibida");
+                Console.WriteLine($"[Visualizer] Imagen {img.seqn} ({ea.RoutingKey}) recibida");
 
                 // Encola la imagen para que el hilo principal la procese
                 imageQueue.Add((img, ea.RoutingKey));
@@ -72,7 +72,7 @@ namespace ImageVisualizer_ampli
             }
         }
 
-        // Método para mostrar la imagen según su routingKey (sin utilizar la interfaz en este caso)
+        // Método para mostrar la imagen según su routingKey
         static void DisplayImage(ImageMessage img, string routingKey)
         {
             try

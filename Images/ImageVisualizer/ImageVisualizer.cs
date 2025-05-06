@@ -12,20 +12,20 @@ class ImageVisualizer : IImageViewer
 
     static void Main()
     {
-        var factory = new ConnectionFactory() { HostName = "192.168.1.65" }; // Cambia la IP según tu configuración
+        var factory = new ConnectionFactory() { HostName = "192.168.1.65" }; //IP del host
         using var connection = factory.CreateConnection();
         using var channel = connection.CreateModel();
 
-        // Declarar el intercambio topic
+        //Declarar el intercambio topic
         channel.ExchangeDeclare("ImageExchange", ExchangeType.Topic);
 
-        // Crear una cola temporal para recibir todas las imágenes (Image.*)
+        //Crear una cola temporal para recibir todas las imágenes (Image.*)
         var queueName = channel.QueueDeclare().QueueName;
         channel.QueueBind(queue: queueName, exchange: "ImageExchange", routingKey: "Image.*");
 
         var visualizer = new ImageVisualizer();
 
-        // Configurar el consumidor de RabbitMQ
+        //Configurar el consumidor de RabbitMQ
         var consumer = new EventingBasicConsumer(channel);
         consumer.Received += (model, ea) =>
         {
@@ -35,25 +35,25 @@ class ImageVisualizer : IImageViewer
                 var message = Encoding.UTF8.GetString(body);
                 var img = ImageMessage.Deserialize(message);
 
-                // Imprimir la imagen en consola con los colores correctos a través del método Display
+                //Imprimir la imagen en consola con los colores correctos a través del método Display
                 visualizer.Display(img);
 
                 // Si la imagen es la esperada, la mostramos
                 if (img.Id == expectedId)
                 {
                     expectedId++;
-                    visualizer.CheckBuffer(); // Verificamos si hay imágenes en el buffer para mostrar
+                    visualizer.CheckBuffer(); //Verificamos si hay imágenes en el buffer para mostrar
                 }
                 else
                 {
-                    // Si no es la imagen esperada, la guardamos en el buffer
+                    //Si no es la imagen esperada, la guardamos en el buffer
                     if (!imageBuffer.ContainsKey(img.Id))
                     {
                         imageBuffer.Add(img.Id, img);
                     }
                 }
 
-                // Confirmar recepción de mensaje
+                //Confirmar recepción de mensaje
                 channel.BasicAck(deliveryTag: ea.DeliveryTag, multiple: false);
             }
             catch (Exception ex)
@@ -63,38 +63,38 @@ class ImageVisualizer : IImageViewer
             }
         };
 
-        // Comenzamos a consumir mensajes
+        //Comenzamos a consumir mensajes
         channel.BasicConsume(queue: queueName, autoAck: false, consumer: consumer);
         Console.WriteLine("Visualizador activo...");
         Console.ReadLine();
     }
 
-    // Método para mostrar una imagen
+    //Método para mostrar una imagen
     public void Display(ImageMessage img)
     {
-        // Si la imagen tiene el prefijo "Procesada_", la tratamos como imagen procesada
+        //Si la imagen tiene el prefijo "Procesada_", la tratamos como imagen procesada
         if (img.Payload.StartsWith("Procesada_"))
         {
             Console.ForegroundColor = ConsoleColor.Green; // Color verde para imagen procesada
             Console.WriteLine($"[IMAGEN PROCESADA] ID: {img.Id}, Datos: {img.Payload}");
         }
-        else // Si no, la imagen es original
+        else //Si no, la imagen es original
         {
-            Console.ForegroundColor = ConsoleColor.Cyan; // Color cyan para imagen original
+            Console.ForegroundColor = ConsoleColor.Cyan; //Color cyan para imagen original
             Console.WriteLine($"[IMAGEN ORIGINAL] ID: {img.Id}, Datos: {img.Payload}");
         }
-        Console.ResetColor(); // Resetear el color de la consola
+        Console.ResetColor(); //Resetear el color de la consola
     }
 
-    // Método para comprobar el buffer y mostrar imágenes en orden
+    //Método para comprobar el buffer y mostrar imágenes en orden
     private void CheckBuffer()
     {
         while (imageBuffer.ContainsKey(expectedId))
         {
             var img = imageBuffer[expectedId];
-            imageBuffer.Remove(expectedId); // Eliminar la imagen del buffer
-            Display(img); // Mostrarla usando el método Display para aplicar colores
-            expectedId++; // Actualizar el ID esperado
+            imageBuffer.Remove(expectedId); //Eliminar la imagen del buffer
+            Display(img); //Mostrarla usando el método Display para aplicar colores
+            expectedId++; //Actualizar el ID esperado
         }
     }
 }

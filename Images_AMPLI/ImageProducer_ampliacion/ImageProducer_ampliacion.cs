@@ -10,7 +10,7 @@ namespace ImageProducer_ampliacion
     {
         static void Main()
         {
-            var factory = new ConnectionFactory() { HostName = "192.168.1.65" };
+            var factory = new ConnectionFactory() { HostName = "10.38.0.172" };
             using var connection = factory.CreateConnection();
             using var channel = connection.CreateModel();
 
@@ -37,7 +37,7 @@ namespace ImageProducer_ampliacion
                         body: body
                     );
 
-                    Console.WriteLine($"[Producer] Imagen enviada: {img.Id}");
+                    Console.WriteLine($"[Producer] Imagen enviada: {img.seqn}");
 
                     Thread.Sleep(200);  // Espera 200 ms (~5 FPS)
                 }

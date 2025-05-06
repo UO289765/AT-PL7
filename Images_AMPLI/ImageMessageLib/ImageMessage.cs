@@ -2,17 +2,17 @@
 {
     public class ImageMessage
     {
-        public int Id { get; set; }
+        public int seqn { get; set; }
         public string Payload { get; set; }
 
-        public string Serialize() => $"{Id}:{Payload}";
+        public string Serialize() => $"{seqn}:{Payload}";
 
         public static ImageMessage Deserialize(string raw)
         {
             var parts = raw.Split(':');
             return new ImageMessage
             {
-                Id = int.Parse(parts[0]),
+                seqn = int.Parse(parts[0]),
                 Payload = parts[1]
             };
         }

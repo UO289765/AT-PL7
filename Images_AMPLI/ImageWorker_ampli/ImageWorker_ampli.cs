@@ -11,7 +11,7 @@ namespace ImageWorker_ampli
     {
         static void Main()
         {
-            var factory = new ConnectionFactory() { HostName = "192.168.1.65" };
+            var factory = new ConnectionFactory() { HostName = "10.38.0.172" };
             using var connection = factory.CreateConnection();
             using var channel = connection.CreateModel();
 
@@ -27,14 +27,14 @@ namespace ImageWorker_ampli
                 var msg = Encoding.UTF8.GetString(body);
                 var img = ImageMessage.Deserialize(msg);
 
-                Console.WriteLine($"[Worker] Procesando imagen: {img.Id}");
+                Console.WriteLine($"[Worker] Procesando imagen: {img.seqn}");
                 var processedPayload = processor.Process(img.Payload);
 
-                var resultMsg = new ImageMessage { Id = img.Id, Payload = processedPayload };
+                var resultMsg = new ImageMessage { seqn = img.seqn, Payload = processedPayload };
                 var resultBody = Encoding.UTF8.GetBytes(resultMsg.Serialize());
 
                 channel.BasicPublish("ImageExchange", "Image.Result", null, resultBody);
-                Console.WriteLine($"[Worker] Resultado enviado: {resultMsg.Id}");
+                Console.WriteLine($"[Worker] Resultado enviado: {resultMsg.seqn}");
             };
 
             channel.BasicConsume("ImageWorkQueue", true, consumer);

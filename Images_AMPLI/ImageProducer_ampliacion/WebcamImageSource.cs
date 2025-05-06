@@ -25,14 +25,14 @@ namespace ImageProducer_ampliacion
             capture.Read(frame);
 
             if (frame.Empty())
-                throw new Exception("No se pudo capturar la imagen de la webcam.");
+                throw new Exception("No se pudo capturar la imagen de la webcam."); //coge los frames y los pasa a base64
 
             var buffer = frame.ToBytes(".jpg");
             var base64 = Convert.ToBase64String(buffer);
 
             return new ImageMessage
             {
-                Id = id++,
+                seqn = id++,
                 Payload = base64
             };
         }

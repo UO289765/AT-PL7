@@ -16,7 +16,7 @@ namespace ImageWorker_ampli
         public FaceDetectionProcessor()
         {
             faceCascade = new CascadeClassifier("haarcascade_frontalface_default.xml");
-            // Asegúrate de tener el XML en la carpeta donde corres el programa
+           
         }
 
         public string Process(string imagePayload)

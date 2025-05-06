@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35707.178 d17.12
+VisualStudioVersion = 17.12.35707.178
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Images", "Images\Images.csproj", "{C99DD1CF-2458-419A-A16A-E5371F74B68D}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageWorker", "ImageWorker\ImageWorker.csproj", "{9AE51EFF-CBFF-41B2-9964-42B0B8F85EF2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageVisualizer", "ImageVisualizer\ImageVisualizer.csproj", "{225C2AC8-0534-4196-854A-03D3D01BE40E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestCode", "TestCode\TestCode.csproj", "{51742F22-BECC-4B6C-9694-78FBC8BFF077}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{225C2AC8-0534-4196-854A-03D3D01BE40E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{225C2AC8-0534-4196-854A-03D3D01BE40E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{225C2AC8-0534-4196-854A-03D3D01BE40E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51742F22-BECC-4B6C-9694-78FBC8BFF077}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51742F22-BECC-4B6C-9694-78FBC8BFF077}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51742F22-BECC-4B6C-9694-78FBC8BFF077}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51742F22-BECC-4B6C-9694-78FBC8BFF077}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
